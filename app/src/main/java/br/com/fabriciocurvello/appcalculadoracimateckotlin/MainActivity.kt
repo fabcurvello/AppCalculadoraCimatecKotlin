@@ -5,7 +5,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,11 +12,13 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var etNumero1: EditText
-    lateinit var etNumero2: EditText
-    lateinit var spOperacao: Spinner
-    lateinit var btCalcular: Button
-    lateinit var tvResultado: TextView
+    private lateinit var etNumero1: EditText
+    private lateinit var etNumero2: EditText
+    private lateinit var spOperacao: Spinner
+    private lateinit var btCalcular: Button
+    private lateinit var tvResultado: TextView
+
+    private val calculadora = Calculadora()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,13 +44,7 @@ class MainActivity : AppCompatActivity() {
             val operacao = spOperacao.selectedItem.toString()
 
             if ((num1 != null) && (num2 != null)) {
-                var resultado = 0.0
-                when (operacao) {
-                    "Adição" -> resultado = num1 + num2
-                    "Subtração" -> resultado = num1 - num2
-                    "Multiplicação" -> resultado = num1 * num2
-                    "Divisão" -> resultado = num1 / num2
-                }
+                val resultado = calculadora.calcular(num1, num2, operacao)
                 tvResultado.text = resultado.toString()
             } else {
                 tvResultado.text = "Entrada inválida."
