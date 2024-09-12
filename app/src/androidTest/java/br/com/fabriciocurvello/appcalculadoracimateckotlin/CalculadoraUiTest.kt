@@ -31,7 +31,7 @@ class CalculadoraUiTest {
         pausa(3)
     }
 
-    //Elabore testes Ui para subtração, multiplicação e divisão
+    //Elabore testes de integração para subtração, multiplicação e divisão
 
     fun pausa(segundos: Long) {
         try {
